@@ -1,0 +1,9 @@
+##Removal of collisions of knolls with cliffs=name
+##layerofcliffspolygons=vector
+##radiusofknoll=number3.0
+##layerofsmallknollspoints=vector
+##knolls=output vector
+outputs_QGISFIXEDDISTANCEBUFFER_1=processing.runalg('qgis:fixeddistancebuffer', layerofsmallknollspoints,radiusofknoll,5.0,False,None)
+outputs_QGISEXTRACTBYLOCATION_1=processing.runalg('qgis:extractbylocation', outputs_QGISFIXEDDISTANCEBUFFER_1['OUTPUT'],layerofcliffspolygons,['intersects'],0.2,None)
+outputs_QGISDIFFERENCE_1=processing.runalg('qgis:difference', outputs_QGISFIXEDDISTANCEBUFFER_1['OUTPUT'],outputs_QGISEXTRACTBYLOCATION_1['OUTPUT'],True,None)
+outputs_QGISPOLYGONCENTROIDS_1=processing.runalg('qgis:polygoncentroids', outputs_QGISDIFFERENCE_1['OUTPUT'],knolls)

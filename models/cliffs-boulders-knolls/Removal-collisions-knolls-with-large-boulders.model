@@ -1,0 +1,324 @@
+{
+    "values": {
+        "inputs": {
+            "layerofcliffspolygons": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 108.0, 
+                            "x": 757.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "layerofcliffspolygons", 
+                            "shapetype": [
+                                0
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Layer of large boulders (polygons)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "radiusofknoll": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 43.0, 
+                            "x": 328.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "radiusofknoll", 
+                            "min": 0.5, 
+                            "default": 3.0, 
+                            "max": 50.0, 
+                            "value": 3.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Radius of knoll (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "layerofsmallknollspoints": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 42.0, 
+                            "x": 122.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "layerofsmallknollspoints", 
+                            "shapetype": [
+                                0
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Layer of small knolls (points)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "radiusoflargeboulders": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 42.0, 
+                            "x": 550.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "radiusoflargeboulders", 
+                            "min": 0.5, 
+                            "default": 4.5, 
+                            "max": 50.0, 
+                            "value": 4.5, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Radius of large boulder (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Removal of collisions of small knolls/boulders with large/gigantic boulders.\nUsed tools: Fixed distance buffer, Extract by location, Polygon centroids, Difference", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "OUTPUT_LAYER_ALGQGISPOLYGONCENTROIDS_1": "Knolls without collisions with large boulders.\nFormat: vector, points", 
+            "ALG_VERSION": "1.0", 
+            "layerofsmallknollspoints": "Layer of small knolls or bouders\nFormat: vector, points", 
+            "radiusoflargeboulders": "Maximum radius of large boulders.\nFormat: number (0.5 - 50.0, can be decimal)\nUnits: meters\nDefault value: 4.5", 
+            "layerofcliffspolygons": "Layer of large or gigantic boulders.\nFormat: vector, polygon", 
+            "radiusofknoll": "Maximum radius of knoll.\nFormat: number (0.5 - 50.0, can be decimal)\nUnits: meters\nDefault value: 3.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Removal of collisions of knolls with large boulders", 
+        "algs": {
+            "QGISDIFFERENCE_1": {
+                "values": {
+                    "name": "QGISDIFFERENCE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 203.0, 
+                            "x": 537.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "IGNORE_INVALID": true, 
+                        "OVERLAY": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYLOCATION_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:difference", 
+                    "description": "Difference"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYLOCATION_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYLOCATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 115.0, 
+                            "x": 332.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "PREDICATE": [
+                            "intersects"
+                        ], 
+                        "PRECISION": 0.1, 
+                        "INTERSECT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbylocation", 
+                    "description": "Extract by location: knoll x cliffs"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_2": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 112.0, 
+                            "x": 547.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "name": "layerofcliffspolygons"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "radiusoflargeboulders"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: area of large boulder"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_1": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 116.0, 
+                            "x": 117.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "name": "layerofsmallknollspoints"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "radiusofknoll"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: area of knoll"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONCENTROIDS_1": {
+                "values": {
+                    "name": "QGISPOLYGONCENTROIDS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Knolls", 
+                                "pos": {
+                                    "values": {
+                                        "y": 205.0, 
+                                        "x": 119.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 204.0, 
+                            "x": 324.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISDIFFERENCE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygoncentroids", 
+                    "description": "Polygon centroids"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

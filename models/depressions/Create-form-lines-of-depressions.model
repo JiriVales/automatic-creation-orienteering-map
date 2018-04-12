@@ -1,0 +1,579 @@
+{
+    "values": {
+        "inputs": {
+            "contoursofdepression": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 107.0, 
+                            "x": 125.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "contoursofdepression", 
+                            "shapetype": [
+                                1
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Contours of depressions"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "dem": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 41.0, 
+                            "x": 126.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "dem", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Finding depressions which will be represented as Form lines (auxiliary contour lines).  \nUsed tools: Find depression area, Lines to polygon, Field calculator, Extract by location, Merge vector layers, Delete duplicate geometries, Extract by attribute, Polygons to lines, Delete column", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "contoursofdepression": "Principal or thickened contours of depressions. For elimination duplication.\nFormat: vector, polyline", 
+            "ALG_VERSION": "1.0", 
+            "dem": "Raster representing the height of the terrain.\nFormat: raster", 
+            "OUTPUT_ALGQGISDELETECOLUMN_1": "Auxiliary contour lines of depression.\nFormat: vector, polyline", 
+            "CENTROIDS_ALGSAGAPOLYGONCENTROIDS_1": "Pits, small depressions, holes.", 
+            "ALG_HELP_CREATOR": "Jiri Vales"
+        }, 
+        "group": "Create form lines of depressions", 
+        "name": "Create form lines of depressions", 
+        "algs": {
+            "QGISPOLYGONSTOLINES_1": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 889.8948737499996, 
+                            "x": 786.117941875
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_4", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "MODELERFIND-DEPRESSION-AREA_1": {
+                "values": {
+                    "name": "MODELERFIND-DEPRESSION-AREA_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 77.8573719590645, 
+                            "x": 408.5265468274831
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "dem": {
+                            "values": {
+                                "name": "dem"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "modeler:find-depression-area", 
+                    "description": "Find depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDELETEDUPLICATEGEOMETRIES_1": {
+                "values": {
+                    "name": "QGISDELETEDUPLICATEGEOMETRIES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 576.4699081567419, 
+                            "x": 699.9870680192571
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISMERGEVECTORLAYERS_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:deleteduplicategeometries", 
+                    "description": "Delete duplicate geometries"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISMERGEVECTORLAYERS_1": {
+                "values": {
+                    "name": "QGISMERGEVECTORLAYERS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 521.015012323465, 
+                            "x": 431.9591717580265
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "LAYERS": [
+                            {
+                                "values": {
+                                    "alg": "QGISFIELDCALCULATOR_3", 
+                                    "output": "OUTPUT_LAYER"
+                                }, 
+                                "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                            }, 
+                            {
+                                "values": {
+                                    "alg": "QGISFIELDCALCULATOR_4", 
+                                    "output": "OUTPUT_LAYER"
+                                }, 
+                                "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                            }
+                        ]
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:mergevectorlayers", 
+                    "description": "Merge vector layers"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISLINESTOPOLYGONS_1": {
+                "values": {
+                    "name": "QGISLINESTOPOLYGONS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 182.1775, 
+                            "x": 131.89750000000004
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "name": "contoursofdepression"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:linestopolygons", 
+                    "description": "Lines to polygons"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 145.0, 
+                            "x": 401.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "MODELERFIND-DEPRESSION-AREA_1", 
+                                "output": "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_1"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 1.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYLOCATION_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYLOCATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 345.94175524531227, 
+                            "x": 154.43172518726504
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "PREDICATE": [
+                            "intersects"
+                        ], 
+                        "PRECISION": 0.0, 
+                        "INTERSECT": {
+                            "values": {
+                                "alg": "QGISLINESTOPOLYGONS_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbylocation", 
+                    "description": "Extract by location"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_3": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 488.493060214716, 
+                            "x": 147.4029655547834
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYLOCATION_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 0.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": "1", 
+                        "FIELD_NAME": "isdepres"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: intersection with contours of depression"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_4": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_4", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 355.2829144539061, 
+                            "x": 503.4999545531582
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 0.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": "0", 
+                        "FIELD_NAME": "isdepres"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: attribute isdepres"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDELETECOLUMN_1": {
+                "values": {
+                    "name": "QGISDELETECOLUMN_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Form_lines_depression", 
+                                "pos": {
+                                    "values": {
+                                        "y": 1187.2544277314457, 
+                                        "x": 1007.2507440641014
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 1105.318041636719, 
+                            "x": 983.0679418749999
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "COLUMN": "length", 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:deletecolumn", 
+                    "description": "Delete column: length"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 1029.468041636719, 
+                            "x": 960.4679418749997
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_5", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "16.5", 
+                        "FIELD": "length"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: length more than 16.5"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_2": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 231.0, 
+                            "x": 404.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 2, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "4", 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: bigger than "
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_5": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_5", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 669.6307926572443, 
+                            "x": 719.8241690930025
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISDELETEDUPLICATEGEOMETRIES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "0", 
+                        "FIELD": "isdepres"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: not contours of depression"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_4": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_4", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 779.5556431467512, 
+                            "x": 736.4759277026043
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_5", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "137", 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: auxiliary contour line (depression)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_5": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_5", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 962.0180416367189, 
+                            "x": 896.9179418749999
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISPOLYGONSTOLINES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 3.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$length", 
+                        "FIELD_NAME": "length"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: add length"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

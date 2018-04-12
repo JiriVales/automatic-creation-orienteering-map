@@ -1,0 +1,12 @@
+##Create orienteering contours (basic version)=name
+##contourinterval=number5.0
+##maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm=number4
+##formulaforthickenedcontours25intervalofthickenedcontouris25meters=stringif(("ELEV" % 25)=0,1,0)
+##distancemetersbetweenthecreatedpointshermitesplineinterpolation=number3
+##digitalelevationmodelraster=raster
+##minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation=number3
+##minimumcontourlengthmeters=string37
+##orienteeringcontours=output vector
+outputs_MODELERCREATE-PRINCIPAL-AND-THICKENED-CONTOURS_1=processing.runalg('modeler:create-principal-and-thickened-contours', digitalelevationmodelraster,formulaforthickenedcontours25intervalofthickenedcontouris25meters,contourinterval,None)
+outputs_MODELERGENERALIZE-ORIENTEERING-CONTOURS_1=processing.runalg('modeler:generalize-orienteering-contours', outputs_MODELERCREATE-PRINCIPAL-AND-THICKENED-CONTOURS_1['OUTPUT_LAYER_ALGQGISFIELDCALCULATOR_2'],minimumcontourlengthmeters,maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm,None)
+outputs_MODELERSMOOTH-ORIENTEERING-CONTOURS_1=processing.runalg('modeler:smooth-orienteering-contours', outputs_MODELERGENERALIZE-ORIENTEERING-CONTOURS_1['OUTPUT_ALGQGISDELETECOLUMN_1'],minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation,distancemetersbetweenthecreatedpointshermitesplineinterpolation,orienteeringcontours)

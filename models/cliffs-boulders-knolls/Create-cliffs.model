@@ -1,0 +1,662 @@
+{
+    "values": {
+        "inputs": {
+            "formulaforextractcliffsfromslope": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 138.0, 
+                            "x": 114.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "formulaforextractcliffsfromslope", 
+                            "default": "1*(A>25)", 
+                            "value": "1*(A>25)", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Formula for extract cliffs from Slope"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumareaofcliffmeters2": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 763.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumareaofcliffmeters2", 
+                            "default": "18", 
+                            "value": "18", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Minimum area of cliff (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "digitalelevationmodel": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 117.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "digitalelevationmodel", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 211.0, 
+                            "x": 103.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm", 
+                            "min": 1, 
+                            "default": 3, 
+                            "max": 50, 
+                            "value": 3, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Maximum distance (meters) between the original and the simplified curve (Douglas\u2013Peucker algorithm)\n"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "distancemetersbetweenthecreatedpointshermitesplineinterpolation": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 290.0, 
+                            "x": 318.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "distancemetersbetweenthecreatedpointshermitesplineinterpolation", 
+                            "min": 1, 
+                            "default": 3, 
+                            "max": 50, 
+                            "value": 3, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Distance (meters) between the created points (Hermite Spline Interpolation)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximumareaofcliffmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 978.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximumareaofcliffmeters", 
+                            "default": "500", 
+                            "value": "500", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Maximum area of cliff (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 289.0, 
+                            "x": 100.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation", 
+                            "min": 1, 
+                            "default": 3, 
+                            "max": 10, 
+                            "value": 3, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Minimum angle between two consecutive segments in Hermite Spline Interpolation"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Finding cliffs using slope. \nUsed tools: Slope (GDAL), Raster calculator (GDAL), Polygonize (raster to vector), Extract by attribute, Field calculator, Fill holes, Polygons to lines, v.generalize, Lines to polygons", 
+            "formulaforextractcliffsfromslope": "Formula for extract cliffs from slope raster.\n1*(A>X), where X is number (degrees) of minimum slope of cliffs. For example: 1*(A>25), cliffs have got slope greater than 25 degrees. Decimal number must be with dot (f.e. 29.5). A = slope raster.\nDefault value: 1*(A>25)\n", 
+            "minimumareaofcliffmeters2": "Number of the minimum area of individual cliffs.\nFormat: number\nUnits: meters\nDefault value: 18", 
+            "ALG_CREATOR": "Ji\u0159\u00ed Vale\u0161", 
+            "digitalelevationmodel": "Raster representing the height of the terrain.", 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": "Parameter for curve simplification using the Douglas-Peucker algorithm. The number specifies the maximum distance of the simplified curve from the original.\nFormat: number, integer (1-50)\nUnits: meters\nDefault value: 3\n", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Ji\u0159\u00ed Vale\u0161", 
+            "maximumareaofcliffmeters": "Number of the maximum area of individual cliffs.\nFormat: number\nUnits: meters\nDefault value: 500\n", 
+            "OUTPUT_ALGQGISLINESTOPOLYGONS_1": "Cliffs, impassable cliffs, earth banks\nFormat: vector, polygons\n\n\n", 
+            "null": "", 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Minimum angle.\nFormat: number, integer (1-10) \nUnits: angle \nDefault value: 3", 
+            "distancemetersbetweenthecreatedpointshermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Distance between the created points. \nFormat: number, integer (1-50) \nUnits: meters \nDefault value: 3"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create cliffs", 
+        "algs": {
+            "QGISPOLYGONSTOLINES_1": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 209.0, 
+                            "x": 527.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFILLHOLES_1", 
+                                "output": "Results"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines: before generalize"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRRASTERCALCULATOR_1": {
+                "values": {
+                    "name": "GDALOGRRASTERCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 133.0, 
+                            "x": 335.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_F": null, 
+                        "BAND_F": "1", 
+                        "INPUT_D": null, 
+                        "INPUT_E": null, 
+                        "BAND_B": "1", 
+                        "BAND_C": "1", 
+                        "BAND_A": "1", 
+                        "RTYPE": 5, 
+                        "BAND_D": "1", 
+                        "NO_DATA": null, 
+                        "INPUT_B": null, 
+                        "BAND_E": "1", 
+                        "INPUT_C": null, 
+                        "INPUT_A": {
+                            "values": {
+                                "alg": "GDALOGRSLOPE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FORMULA": {
+                            "values": {
+                                "name": "formulaforextractcliffsfromslope"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXTRA": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:rastercalculator", 
+                    "description": "Raster calculator: Slope of cliffs"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GRASS7V.GENERALIZE.SMOOTH_1": {
+                "values": {
+                    "name": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 291.0, 
+                            "x": 537.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "angle_thresh": {
+                            "values": {
+                                "name": "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "GRASS_SNAP_TOLERANCE_PARAMETER": -1.0, 
+                        "GRASS_MIN_AREA_PARAMETER": 0.0001, 
+                        "-l": true, 
+                        "look_ahead": 7.0, 
+                        "GRASS_OUTPUT_TYPE_PARAMETER": 0, 
+                        "-t": false, 
+                        "beta": 1.0, 
+                        "slide": 0.5, 
+                        "alpha": 1.0, 
+                        "threshold": {
+                            "values": {
+                                "name": "distancemetersbetweenthecreatedpointshermitesplineinterpolation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "input": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SIMPLIFY_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "GRASS_REGION_PARAMETER": null, 
+                        "method": 4
+                    }, 
+                    "active": true, 
+                    "consoleName": "grass7:v.generalize.smooth", 
+                    "description": "v.generalize.smooth - Vector based smooth generalization."
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRPOLYGONIZE_1": {
+                "values": {
+                    "name": "GDALOGRPOLYGONIZE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 546.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRRASTERCALCULATOR_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:polygonize", 
+                    "description": "Polygonize (raster to vector)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRSLOPE_1": {
+                "values": {
+                    "name": "GDALOGRSLOPE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 333.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "SCALE": 1.0, 
+                        "BAND": 1.0, 
+                        "ZEVENBERGEN": false, 
+                        "COMPUTE_EDGES": false, 
+                        "INPUT": {
+                            "values": {
+                                "name": "digitalelevationmodel"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "AS_PERCENT": false
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:slope", 
+                    "description": "Slope"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISLINESTOPOLYGONS_1": {
+                "values": {
+                    "name": "QGISLINESTOPOLYGONS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Cliffs", 
+                                "pos": {
+                                    "values": {
+                                        "y": 288.0, 
+                                        "x": 983.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 287.0, 
+                            "x": 762.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:linestopolygons", 
+                    "description": "Lines to polygons"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 63.0, 
+                            "x": 767.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 3.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_1": {
+                "values": {
+                    "name": "QGISFILLHOLES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 205.0, 
+                            "x": 759.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": 100000.0, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 552.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 2, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRPOLYGONIZE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "0", 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: only cliffs"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_3": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 204.0, 
+                            "x": 979.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 5, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "maximumareaofcliffmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: smaller area than"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_2": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 60.0, 
+                            "x": 983.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "minimumareaofcliffmeters2"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: greater area than"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GRASS7V.GENERALIZE.SIMPLIFY_1": {
+                "values": {
+                    "name": "GRASS7V.GENERALIZE.SIMPLIFY_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 207.0, 
+                            "x": 316.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "GRASS_SNAP_TOLERANCE_PARAMETER": -1.0, 
+                        "GRASS_MIN_AREA_PARAMETER": 0.0001, 
+                        "-l": true, 
+                        "look_ahead": {
+                            "values": {
+                                "name": "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "GRASS_OUTPUT_TYPE_PARAMETER": 0, 
+                        "-t": false, 
+                        "reduction": 50.0, 
+                        "threshold": 1.0, 
+                        "input": {
+                            "values": {
+                                "alg": "QGISPOLYGONSTOLINES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "GRASS_REGION_PARAMETER": null, 
+                        "method": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "grass7:v.generalize.simplify", 
+                    "description": "v.generalize.simplify - Vector based simplification generalization."
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

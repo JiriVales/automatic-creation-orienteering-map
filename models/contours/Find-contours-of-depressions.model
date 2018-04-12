@@ -1,0 +1,456 @@
+{
+    "values": {
+        "inputs": {
+            "numbermetersofenlargethedepressionarea": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 642.0, 
+                            "x": 118.00063750000004
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "numbermetersofenlargethedepressionarea", 
+                            "min": 1.0, 
+                            "default": 9.0, 
+                            "max": 500.0, 
+                            "value": 9.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Number (meters) of enlarge the depression area"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "contours": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 86.35284375000009, 
+                            "x": 572.0006375
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "contours", 
+                            "shapetype": [
+                                1
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Contours"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "dem": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 91.06044374999999, 
+                            "x": 122.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "dem", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Finding depression contours. Attribute \"depress\" = 1 (contour is depression) or 0 (not depression). \nUsed tools: Find depression area, Polygons to lines, Fixed distance buffer, Merge vector layers, Dissolve, Select by location, Field calculator, Delete duplicate geometry", 
+            "numbermetersofenlargethedepressionarea": "To find depression contours at the edge of the depression / sink, you need to enlarge the area of the depression. Optimal value is 9 meters.\nFormat: number (may be decimal) (1-500)\nUnits: meters\nDefault value: 9\n", 
+            "dem": "Raster representing the height of the terrain.\nFormat: raster", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "null": "", 
+            "OUTPUT_ALGQGISDELETEDUPLICATEGEOMETRIES_1": "Contours with attribute \"depress\" (values 1 or 0).\nFormat: vector, polyline", 
+            "contours": "Source contours.\nFormat: vector, polyline"
+        }, 
+        "group": "Find contours of depressions", 
+        "name": "Find contours of depressions", 
+        "algs": {
+            "QGISPOLYGONSTOLINES_1": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 322.22436874999994, 
+                            "x": 178.44367499999998
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "MODELERFIND-DEPRESSION-AREA_1", 
+                                "output": "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_1"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines: Depression polygons to lines"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "MODELERFIND-DEPRESSION-AREA_1": {
+                "values": {
+                    "name": "MODELERFIND-DEPRESSION-AREA_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 209.38066948437495, 
+                            "x": 246.421243328125
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "dem": {
+                            "values": {
+                                "name": "dem"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "modeler:find-depression-area", 
+                    "description": "Find depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSELECTBYLOCATION_1": {
+                "values": {
+                    "name": "QGISSELECTBYLOCATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 275.84876249999957, 
+                            "x": 712.9250187499995
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "name": "contours"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "PREDICATE": [
+                            "within"
+                        ], 
+                        "PRECISION": 0.0, 
+                        "INTERSECT": {
+                            "values": {
+                                "alg": "QGISDISSOLVE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbylocation", 
+                    "description": "Select by location: contours in depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 449.49400625, 
+                            "x": 827.6936999999996
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYLOCATION_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 0.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": "1", 
+                        "FIELD_NAME": "depress"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: create depression field"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_2": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 165.25317500000028, 
+                            "x": 930.6936999999998
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "name": "contours"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD_PRECISION": 0.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": "0", 
+                        "FIELD_NAME": "depress"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: create depression field 2"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDISSOLVE_1": {
+                "values": {
+                    "name": "QGISDISSOLVE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 583.2531750000003, 
+                            "x": 429.01899999999955
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISMERGEVECTORLAYERS_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "DISSOLVE_ALL": true, 
+                        "FIELD": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:dissolve", 
+                    "description": "Dissolve: enlarge the depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_1": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 422.3534812500002, 
+                            "x": 209.59779375000016
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONSTOLINES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "numbermetersofenlargethedepressionarea"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: enlarge the depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDELETEDUPLICATEGEOMETRIES_1": {
+                "values": {
+                    "name": "QGISDELETEDUPLICATEGEOMETRIES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Contours_of_depressions", 
+                                "pos": {
+                                    "values": {
+                                        "y": 536.7555660156254, 
+                                        "x": 1112.0397364687499
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 458.2531750000003, 
+                            "x": 1107.6936999999998
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISMERGEVECTORLAYERS_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:deleteduplicategeometries", 
+                    "description": "Delete duplicate geometries"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISMERGEVECTORLAYERS_1": {
+                "values": {
+                    "name": "QGISMERGEVECTORLAYERS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 341.98830625000005, 
+                            "x": 483.84399375
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "LAYERS": [
+                            {
+                                "values": {
+                                    "alg": "MODELERFIND-DEPRESSION-AREA_1", 
+                                    "output": "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_1"
+                                }, 
+                                "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                            }, 
+                            {
+                                "values": {
+                                    "alg": "QGISFIXEDDISTANCEBUFFER_1", 
+                                    "output": "OUTPUT"
+                                }, 
+                                "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                            }
+                        ]
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:mergevectorlayers", 
+                    "description": "Merge vector layers: enlarge the depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISMERGEVECTORLAYERS_2": {
+                "values": {
+                    "name": "QGISMERGEVECTORLAYERS_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 349.2531750000003, 
+                            "x": 1023.6936999999998
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "LAYERS": [
+                            {
+                                "values": {
+                                    "alg": "QGISFIELDCALCULATOR_1", 
+                                    "output": "OUTPUT_LAYER"
+                                }, 
+                                "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                            }, 
+                            {
+                                "values": {
+                                    "alg": "QGISFIELDCALCULATOR_2", 
+                                    "output": "OUTPUT_LAYER"
+                                }, 
+                                "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                            }
+                        ]
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:mergevectorlayers", 
+                    "description": "Merge vector layers: merge depression and not depression contours"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

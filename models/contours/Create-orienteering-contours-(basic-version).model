@@ -1,0 +1,347 @@
+{
+    "values": {
+        "inputs": {
+            "contourinterval": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 152.0, 
+                            "x": 142.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "contourinterval", 
+                            "min": 0.5, 
+                            "default": 5.0, 
+                            "max": 20.0, 
+                            "value": 5.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Contour interval"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 254.0, 
+                            "x": 140.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm", 
+                            "min": 1, 
+                            "default": 4, 
+                            "max": 50, 
+                            "value": 4, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Maximum distance (meters) between the original and the simplified curve (Douglas\u2013Peucker algorithm)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "formulaforthickenedcontours25intervalofthickenedcontouris25meters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 102.0, 
+                            "x": 139.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "formulaforthickenedcontours25intervalofthickenedcontouris25meters", 
+                            "default": "if((\"ELEV\" % 25)=0,1,0)", 
+                            "value": "if((\"ELEV\" % 25)=0,1,0)", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Formula for thickened contours (25 = interval of thickened contour is 25 meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "distancemetersbetweenthecreatedpointshermitesplineinterpolation": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 367.0, 
+                            "x": 140.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "distancemetersbetweenthecreatedpointshermitesplineinterpolation", 
+                            "min": 1, 
+                            "default": 3, 
+                            "max": 50, 
+                            "value": 3, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Distance (meters) between the created points (Hermite Spline Interpolation)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "digitalelevationmodelraster": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 56.0, 
+                            "x": 139.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "digitalelevationmodelraster", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 308.0, 
+                            "x": 144.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation", 
+                            "min": 1, 
+                            "default": 3, 
+                            "max": 10, 
+                            "value": 3, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Minimum angle between two consecutive segments in Hermite Spline Interpolation"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumcontourlengthmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 203.0, 
+                            "x": 142.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumcontourlengthmeters", 
+                            "default": "37", 
+                            "value": "37", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Minimum contour length (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Creating orienteering contours from digital elevation model, generalize (elimination, Douglas-Peucker algorithm), smooth (Hermite spline interpolation), resolution of principal and thickened contours (attribute \"thick\", value 0 or 1, 1= thickened contour)\nUsed tools: Create principal and thickened contours, Generalize orienteering contours, Smooth orienteering contours", 
+            "contourinterval": "Difference in elevation between successive contour lines.\nFormat: number (may be decimal) (0.5 - 20.0)\nUnits: meters\nDefault value: 5 ", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": "Parameter for curve simplification using the Douglas-Peucker algorithm. The number specifies the maximum distance of the simplified curve from the original.\nFormat: number, integer (1-50)\nUnits: meters\nDefault value: 4 ", 
+            "formulaforthickenedcontours25intervalofthickenedcontouris25meters": "if((\"ELEV\" % (thickened contour interval))=0,1,0)\nIf the contour elevation is divided by the thickened contour interval and the rest is 0 (it is the thickened contour), if not, the value of the attribute is 0. The name of attribute with values 0 or 1 is thick.\nIf there is not principal contour interval of 5 meters, thickened contour interval after the modulo must be changed.\nWhen the interval of thickened contours is a decimal number, it must be written with a dot. For example: 12.5 -> if((\"ELEV\" % 12.5)=0,1,0)).\nFormat: String\nDefault value: if((\"ELEV\" % 25)=0,1,0) ", 
+            "ALG_VERSION": "1.0", 
+            "distancemetersbetweenthecreatedpointshermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Distance between the created points.\nFormat: number, integer (1-50)\nUnits: meters\nDefault value: 3 ", 
+            "digitalelevationmodelraster": "Raster representing the height of the terrain.\nFormat: raster ", 
+            "output_ALGGRASS7V.GENERALIZE.SMOOTH_1_ALGMODELERSMOOTH-ORIENTEERING-CONTOURS_1": "Orienteering contours with attribute thick (0 or 1, 1 = thickened contour)\nFormat: vector, polyline", 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Minimum angle.\nFormat: number, integer (1-10)\nUnits: angle\nDefault value: 3 ", 
+            "minimumcontourlengthmeters": "Shorter contours than the specified value will be deleted.\nFormat: number, integer\nUnits: meters\nDefault value: 37 ", 
+            "ALG_HELP_CREATOR": "Jiri Vales"
+        }, 
+        "group": "Create orienteering contours (basic version)", 
+        "name": "Create orienteering contours (basic version)", 
+        "algs": {
+            "MODELERGENERALIZE-ORIENTEERING-CONTOURS_1": {
+                "values": {
+                    "name": "MODELERGENERALIZE-ORIENTEERING-CONTOURS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 231.0, 
+                            "x": 408.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": {
+                            "values": {
+                                "name": "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "contours": {
+                            "values": {
+                                "alg": "MODELERCREATE-PRINCIPAL-AND-THICKENED-CONTOURS_1", 
+                                "output": "OUTPUT_LAYER_ALGQGISFIELDCALCULATOR_2"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "min": {
+                            "values": {
+                                "name": "minimumcontourlengthmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "modeler:generalize-orienteering-contours", 
+                    "description": "Generalize orienteering contours"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "MODELERCREATE-PRINCIPAL-AND-THICKENED-CONTOURS_1": {
+                "values": {
+                    "name": "MODELERCREATE-PRINCIPAL-AND-THICKENED-CONTOURS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 88.0, 
+                            "x": 406.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "digitalterrainmodelraster": {
+                            "values": {
+                                "name": "digitalelevationmodelraster"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "vzorec": {
+                            "values": {
+                                "name": "formulaforthickenedcontours25intervalofthickenedcontouris25meters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "contourinterval": {
+                            "values": {
+                                "name": "contourinterval"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "modeler:create-principal-and-thickened-contours", 
+                    "description": "Create principal and thickened contours"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "MODELERSMOOTH-ORIENTEERING-CONTOURS_1": {
+                "values": {
+                    "name": "MODELERSMOOTH-ORIENTEERING-CONTOURS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "output_ALGGRASS7V.GENERALIZE.SMOOTH_1": {
+                            "values": {
+                                "description": "orienteering_contours", 
+                                "pos": {
+                                    "values": {
+                                        "y": 495.0, 
+                                        "x": 415.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 372.0, 
+                            "x": 416.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": {
+                            "values": {
+                                "name": "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "contours": {
+                            "values": {
+                                "alg": "MODELERGENERALIZE-ORIENTEERING-CONTOURS_1", 
+                                "output": "OUTPUT_ALGQGISDELETECOLUMN_1"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "distancebetweenthecreatedpointshermitesplineinterpolation": {
+                            "values": {
+                                "name": "distancemetersbetweenthecreatedpointshermitesplineinterpolation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "modeler:smooth-orienteering-contours", 
+                    "description": "Smooth orienteering contours"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

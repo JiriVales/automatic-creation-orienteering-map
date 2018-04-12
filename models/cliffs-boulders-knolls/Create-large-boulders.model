@@ -1,0 +1,875 @@
+{
+    "values": {
+        "inputs": {
+            "formulaforextractcliffsfromslope": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 130.0, 
+                            "x": 117.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "formulaforextractcliffsfromslope", 
+                            "default": "1*(A>20)", 
+                            "value": "1*(A>20)", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Formula for extract boulders from Slope"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "halfdistancebetweenthecentersofthetwobouldersmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 430.0, 
+                            "x": 127.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "halfdistancebetweenthecentersofthetwobouldersmeters", 
+                            "min": 2.0, 
+                            "default": 6.0, 
+                            "max": 50.0, 
+                            "value": 6.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Half distance between the centers of two boulders (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumareaofcliffmeters2": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 763.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumareaofcliffmeters2", 
+                            "default": "5", 
+                            "value": "5", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Minimum area of boulder (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "digitalelevationmodel": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 117.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "digitalelevationmodel", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximumareaofcliffmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 134.0, 
+                            "x": 980.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximumareaofcliffmeters", 
+                            "default": "144", 
+                            "value": "144", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Maximum area of boulder (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "themaximumdistancebetweenthecenterandtheedgeofthebouldermeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 204.0, 
+                            "x": 119.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "themaximumdistancebetweenthecenterandtheedgeofthebouldermeters", 
+                            "min": 1.0, 
+                            "default": 6.0, 
+                            "max": 50.0, 
+                            "value": 6.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "The maximum distance between the center and the edge of the boulder (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Finding large or gigantic boulders. \nUsed tools: Slope (GDAL), Raster calculator (GDAL), Polygonize (raster to vector), Extract by attribute, Field calculator, Fill holes, Polygon centroids, Fixed distance buffer, Extract by location, Polygons to lines, Lines to polygons, Dissolve, Difference", 
+            "formulaforextractcliffsfromslope": "Formula for extract boulders from slope raster.\n1*(A>X), where X is number (degrees) of minimum slope of bouders. For example: 1*(A>20), boulders have got slope greater than 20 degrees. Decimal number must be with dot (f.e. 29.5). A = slope raster.\nDefault value: 1*(A>20)\n", 
+            "halfdistancebetweenthecentersofthetwobouldersmeters": "Half distance between the centers of two large or gigantic boulders.\nFormat: number (2.0 - 50.0, can be decimal)\nUnits: meters\nDefault value: 6 ", 
+            "minimumareaofcliffmeters2": "Number of the minimum area of individual boulders.\nFormat: number\nUnits: meters\nDefault value: 5", 
+            "ALG_CREATOR": "Ji\u0159\u00ed Vale\u0161", 
+            "digitalelevationmodel": "Raster representing the height of the terrain.", 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": "Parameter for curve simplification using the Douglas-Peucker algorithm. The number specifies the maximum distance of the simplified curve from the original.\nFormat: number, integer (1-50)\nUnits: meters\nDefault value: 3\n", 
+            "OUTPUT_LAYER_ALGQGISPOLYGONCENTROIDS_3": "Large or Gigantic boulders\nFormat: vector, points", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Ji\u0159\u00ed Vale\u0161", 
+            "maximumareaofcliffmeters": "Number of the maximum area of individual large boulders.\nFormat: number\nUnits: meters\nDefault value: 144\n", 
+            "OUTPUT_ALGQGISLINESTOPOLYGONS_1": "Cliffs, impassable cliffs, earth banks\nFormat: vector, polygons\n\n\n", 
+            "themaximumdistancebetweenthecenterandtheedgeofthebouldermeters": "The maximum distance between the center and the edge of the large or gigantic boulder.\nFormat: number (1.0 - 50.0, can be decimal)\nUnits: meters\nDefault value: 6 ", 
+            "null": "", 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Minimum angle.\nFormat: number, integer (1-10) \nUnits: angle \nDefault value: 3", 
+            "distancemetersbetweenthecreatedpointshermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Distance between the created points. \nFormat: number, integer (1-50) \nUnits: meters \nDefault value: 3"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create large boulders", 
+        "algs": {
+            "QGISDIFFERENCE_1": {
+                "values": {
+                    "name": "QGISDIFFERENCE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 284.0, 
+                            "x": 995.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFILLHOLES_1", 
+                                "output": "Results"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "IGNORE_INVALID": true, 
+                        "OVERLAY": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:difference", 
+                    "description": "Difference: holes"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISLINESTOPOLYGONS_1": {
+                "values": {
+                    "name": "QGISLINESTOPOLYGONS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 369.0, 
+                            "x": 770.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONSTOLINES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:linestopolygons", 
+                    "description": "Lines to polygons: Singlepart to multiparts"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRRASTERCALCULATOR_1": {
+                "values": {
+                    "name": "GDALOGRRASTERCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 133.0, 
+                            "x": 335.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_F": null, 
+                        "BAND_F": "1", 
+                        "INPUT_D": null, 
+                        "INPUT_E": null, 
+                        "BAND_B": "1", 
+                        "BAND_C": "1", 
+                        "BAND_A": "1", 
+                        "RTYPE": 5, 
+                        "BAND_D": "1", 
+                        "NO_DATA": null, 
+                        "BAND_E": "1", 
+                        "INPUT_C": null, 
+                        "FORMULA": {
+                            "values": {
+                                "name": "formulaforextractcliffsfromslope"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "INPUT_A": {
+                            "values": {
+                                "alg": "GDALOGRSLOPE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "INPUT_B": null, 
+                        "EXTRA": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:rastercalculator", 
+                    "description": "Raster calculator: Slope of cliffs"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_1": {
+                "values": {
+                    "name": "QGISFILLHOLES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 205.0, 
+                            "x": 779.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": 100000.0, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRPOLYGONIZE_1": {
+                "values": {
+                    "name": "GDALOGRPOLYGONIZE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 546.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRRASTERCALCULATOR_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:polygonize", 
+                    "description": "Polygonize (raster to vector)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRSLOPE_1": {
+                "values": {
+                    "name": "GDALOGRSLOPE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 333.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "SCALE": 1.0, 
+                        "BAND": 1.0, 
+                        "ZEVENBERGEN": false, 
+                        "COMPUTE_EDGES": false, 
+                        "INPUT": {
+                            "values": {
+                                "name": "digitalelevationmodel"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "AS_PERCENT": false
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:slope", 
+                    "description": "Slope"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONSTOLINES_1": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 371.0, 
+                            "x": 553.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISDISSOLVE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines: Singlepart to multiparts"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_4": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_4", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 284.0, 
+                            "x": 113.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYLOCATION_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "0", 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: only for connection Extract by location and Fixed distance buffer (all values)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 63.0, 
+                            "x": 767.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 3.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYLOCATION_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYLOCATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 283.0, 
+                            "x": 334.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "PREDICATE": [
+                            "intersects"
+                        ], 
+                        "PRECISION": 1.0, 
+                        "INTERSECT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbylocation", 
+                    "description": "Extract by location: boulder"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDISSOLVE_1": {
+                "values": {
+                    "name": "QGISDISSOLVE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 368.0, 
+                            "x": 339.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "DISSOLVE_ALL": true, 
+                        "FIELD": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:dissolve", 
+                    "description": "Dissolve: one point boulder"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_1": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 206.0, 
+                            "x": 335.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONCENTROIDS_2", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "themaximumdistancebetweenthecenterandtheedgeofthebouldermeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: center of boulder"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_3": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 369.0, 
+                            "x": 124.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_4", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "halfdistancebetweenthecentersofthetwobouldersmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: one point boulder"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_2": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 283.0, 
+                            "x": 558.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONCENTROIDS_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": 1.0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 552.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 2, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRPOLYGONIZE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "0", 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: only cliffs"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_3": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 204.0, 
+                            "x": 996.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 5, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "maximumareaofcliffmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: smaller area than"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_2": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 60.0, 
+                            "x": 983.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "minimumareaofcliffmeters2"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: greater area than"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONCENTROIDS_2": {
+                "values": {
+                    "name": "QGISPOLYGONCENTROIDS_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 214.0, 
+                            "x": 554.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygoncentroids", 
+                    "description": "Polygon centroids: boulders"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONCENTROIDS_3": {
+                "values": {
+                    "name": "QGISPOLYGONCENTROIDS_3", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Large_boulders", 
+                                "pos": {
+                                    "values": {
+                                        "y": 433.0, 
+                                        "x": 986.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 367.0, 
+                            "x": 987.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISLINESTOPOLYGONS_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygoncentroids", 
+                    "description": "Polygon centroids: final boulders"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONCENTROIDS_1": {
+                "values": {
+                    "name": "QGISPOLYGONCENTROIDS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 285.0, 
+                            "x": 775.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISDIFFERENCE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygoncentroids", 
+                    "description": "Polygon centroids: holes"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

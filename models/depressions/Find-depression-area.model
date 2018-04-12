@@ -1,0 +1,200 @@
+{
+    "values": {
+        "inputs": {
+            "dem": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 51.0, 
+                            "x": 123.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "dem", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Find and vectorize depression from digital elevation model. \nUsed tools: SAGA - Fill sinks, Raster calculator, Polygonize, Extract by attribute", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "OUTPUT_LAYER_ALGQGISSAVESELECTEDFEATURES_1": "Area of depression.", 
+            "ALG_VERSION": "1.0", 
+            "dem": "Raster representing the height of the terrain.\nFormat: raster", 
+            "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_1": "Area of depression. \nFormat: vector, polygon", 
+            "ALG_HELP_CREATOR": "Jiri Vales"
+        }, 
+        "group": "Find depression area", 
+        "name": "Find depression area", 
+        "algs": {
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Polygons_of_depression", 
+                                "pos": {
+                                    "values": {
+                                        "y": 214.0, 
+                                        "x": 877.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 129.0, 
+                            "x": 871.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 1, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRPOLYGONIZE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "0", 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: only depressions"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRPOLYGONIZE_1": {
+                "values": {
+                    "name": "GDALOGRPOLYGONIZE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 128.0, 
+                            "x": 627.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRRASTERCALCULATOR_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:polygonize", 
+                    "description": "Polygonize (raster to vector)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SAGAFILLSINKS_1": {
+                "values": {
+                    "name": "SAGAFILLSINKS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 123.0, 
+                            "x": 131.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "MINSLOPE": 0.01, 
+                        "DEM": {
+                            "values": {
+                                "name": "dem"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:fillsinks", 
+                    "description": "Fill sinks"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRRASTERCALCULATOR_1": {
+                "values": {
+                    "name": "GDALOGRRASTERCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 124.0, 
+                            "x": 382.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_F": null, 
+                        "BAND_F": "1", 
+                        "INPUT_D": null, 
+                        "INPUT_E": null, 
+                        "BAND_B": "1", 
+                        "BAND_C": "1", 
+                        "BAND_A": "1", 
+                        "RTYPE": 5, 
+                        "BAND_D": "1", 
+                        "NO_DATA": null, 
+                        "BAND_E": "1", 
+                        "INPUT_C": null, 
+                        "FORMULA": "A-B", 
+                        "INPUT_A": {
+                            "values": {
+                                "name": "dem"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "INPUT_B": {
+                            "values": {
+                                "alg": "SAGAFILLSINKS_1", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "EXTRA": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:rastercalculator", 
+                    "description": "Raster calculator: DEM - Filled sinks"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

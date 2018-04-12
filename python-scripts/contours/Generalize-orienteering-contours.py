@@ -1,0 +1,9 @@
+##Generalize orienteering contours=name
+##maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm=number4
+##contours=vector
+##min=string37
+##generalizecontours=output vector
+outputs_QGISFIELDCALCULATOR_1=processing.runalg('qgis:fieldcalculator', contours,'length',0,10.0,2.0,True,'round($length,2)',None)
+outputs_QGISEXTRACTBYATTRIBUTE_1=processing.runalg('qgis:extractbyattribute', outputs_QGISFIELDCALCULATOR_1['OUTPUT_LAYER'],'length',3,min,None)
+outputs_GRASS7V.GENERALIZE.SIMPLIFY_1=processing.runalg('grass7:v.generalize.simplify', outputs_QGISEXTRACTBYATTRIBUTE_1['OUTPUT'],0,maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm,7.0,50.0,False,True,None,-1.0,0.0001,0,None)
+outputs_QGISDELETECOLUMN_1=processing.runalg('qgis:deletecolumn', outputs_GRASS7V.GENERALIZE.SIMPLIFY_1['output'],'length',generalizecontours)

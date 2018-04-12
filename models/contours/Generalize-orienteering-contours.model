@@ -1,0 +1,267 @@
+{
+    "values": {
+        "inputs": {
+            "maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 238.60000000000002, 
+                            "x": 127.83247064062499
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm", 
+                            "min": 1, 
+                            "default": 4, 
+                            "max": 50, 
+                            "value": 4, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Maximum distance (meters) between the original and the simplified curve (Douglas\u2013Peucker algorithm)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "contours": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 44.900000000000006, 
+                            "x": 389.2516586332823
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "contours", 
+                            "shapetype": [
+                                1
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Contours"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "min": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 154.64999999999998, 
+                            "x": 125.71668993749984
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "min", 
+                            "default": "37", 
+                            "value": "37", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Minimum contour length (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Automatic generalization of orienteering contours. Remove short contours (elimination) and simplify using Douglas-Peucker algorithm.\n\nUsed tools: Field calculator, Extract by attribute, v.generalize, Delete column", 
+            "contourinterval": "Difference in elevation between successive contour lines.", 
+            "min": "Shorter contours than the specified value will be deleted.\nFormat: number, integer\nUnits: meters\nDefault value: 37", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "digitalterrainmodelraster": "Raster representing the height of the terrain.", 
+            "maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": "Parameter for curve simplification using the Douglas-Peucker algorithm. The number specifies the maximum distance of the simplified curve from the original.\nFormat: number, integer (1-50)\nUnits: meters\nDefault value: 4", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "OUTPUT_ALGQGISDELETECOLUMN_1": "Contours after generalization.\nFormat: vector, polyline", 
+            "contours": "Orienteering contours.\nFormat: vector, polyline", 
+            "minimumcontourlengthelimination": "", 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Minimum angle.", 
+            "distancebetweenthecreatedpointshermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Distance between the created points.", 
+            "vzorec": "if(Round (\"ELEV\" % (thickened contour interval))=0,1,0)\nIf the contour elevation is divided by the thickened contour interval and the rest is 0 (it is the thickened contour), if not, the value of the attribute is 0. The name of attribute with values 0 or 1 is thickened_contour."
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Generalize orienteering contours", 
+        "algs": {
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 202.0, 
+                            "x": 388.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "min"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "length"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: elimination of short contours"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 125.0, 
+                            "x": 389.25000000000006
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "name": "contours"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD_PRECISION": 2.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "round($length,2)", 
+                        "FIELD_NAME": "length"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: length"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDELETECOLUMN_1": {
+                "values": {
+                    "name": "QGISDELETECOLUMN_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Generalize_contours", 
+                                "pos": {
+                                    "values": {
+                                        "y": 427.3000000000002, 
+                                        "x": 591.7
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 382.3000000000002, 
+                            "x": 391.70000000000005
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "COLUMN": "length", 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SIMPLIFY_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:deletecolumn", 
+                    "description": "Delete column: length"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GRASS7V.GENERALIZE.SIMPLIFY_1": {
+                "values": {
+                    "name": "GRASS7V.GENERALIZE.SIMPLIFY_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 288.0, 
+                            "x": 394.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "GRASS_SNAP_TOLERANCE_PARAMETER": -1.0, 
+                        "GRASS_MIN_AREA_PARAMETER": 0.0001, 
+                        "-l": true, 
+                        "look_ahead": 7.0, 
+                        "GRASS_OUTPUT_TYPE_PARAMETER": 0, 
+                        "-t": false, 
+                        "reduction": 50.0, 
+                        "threshold": {
+                            "values": {
+                                "name": "maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "input": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "GRASS_REGION_PARAMETER": null, 
+                        "method": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "grass7:v.generalize.simplify", 
+                    "description": "v.generalize.simplify - Vector based simplification generalization."
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

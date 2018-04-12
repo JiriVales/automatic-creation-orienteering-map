@@ -1,0 +1,896 @@
+{
+    "values": {
+        "inputs": {
+            "formulatodistinguishknollsandauxiliarycontours": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 340.0, 
+                            "x": 114.19047619047615
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "formulatodistinguishknollsandauxiliarycontours", 
+                            "default": "if((Round(\"area\"))<=22,1,2)", 
+                            "value": "if((Round(\"area\"))<=22,1,2)", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Formula to distinguish knolls and auxiliary contours"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "halfdistancebetweenthecentersoftwoknollsmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 409.0, 
+                            "x": 733.1904761904761
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "halfdistancebetweenthecentersoftwoknollsmeters", 
+                            "min": 2.0, 
+                            "default": 3.0, 
+                            "max": 50.0, 
+                            "value": 3.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Half distance between the centers of two knolls (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximalradiusofknollmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 195.0, 
+                            "x": 523.1904761904761
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximalradiusofknollmeters", 
+                            "min": 1.0, 
+                            "default": 13.5, 
+                            "max": 50.0, 
+                            "value": 13.5, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Maximum radius of knoll (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "dem": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 42.14285714285714, 
+                            "x": 108.19047619047615
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "dem", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Finding small knolls, small elongated knolls, boulders and bigger knolls which will be represented as form lines (auxiliary contour lines).  \nUsed tool: Invert grid, Find depression area, Lines to polygon, Field calculator, Extract by location, Dissolve, Extract by attribute, Polygon centroids, Polygons to lines", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "contoursofdepression": "Principal or thickened contours of depression. For elimination duplication.", 
+            "OUTPUT_ALGQGISDELETECOLUMN_1": "Auxiliary contour lines of depression.", 
+            "halfdistancebetweenthecentersoftwoknollsmeters": "Half distance between the centers of knolls or boulders.\nFormat: number (2.0 - 50.0, can be decimal)\nUnits: meters\nDefault value: 3.0 ", 
+            "ALG_VERSION": "1.0", 
+            "dem": "Raster representing the height of the terrain.\nFormat: raster", 
+            "OUTPUT_ALGQGISPOLYGONSTOLINES_2": "Form lines of knolls (auxiliary contour lines).\nFormat: vector, polyline", 
+            "maximalradiusofknollmeters": "The maximum distance between the center and the edge of the knoll.\nFormat: number (1.0 - 50.0, can be decimal)\nUnits: meters\nDefault value: 13.5", 
+            "formulatodistinguishknollsandauxiliarycontours": "Formula to distinguish knolls/boulders (points) and auxiliary contours (lines). \nif((Round(\"area\"))<=X,1,2), where X is maximum area of knoll/boulders (meters) represented as point. X can be integer (f.e. 22) or decimal number (f.e. 25.5).\nDefault value: if((Round(\"area\"))<=22,1,2)\n(Maximul area of knoll as point is 22 meters.)\n", 
+            "OUTPUT_LAYER_ALGQGISPOLYGONCENTROIDS_2": "Small knolls, small elongated knolls, boulders.\nFormat: vector, point", 
+            "CENTROIDS_ALGSAGAPOLYGONCENTROIDS_1": "Small knolls, small elongated knolls, boulders.\nFormat: vector, point", 
+            "ALG_HELP_CREATOR": "Jiri Vales"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create small knolls and form lines of knolls", 
+        "algs": {
+            "QGISPOLYGONSTOLINES_2": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_2", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Form_lines_knolls", 
+                                "pos": {
+                                    "values": {
+                                        "y": 267.64787585937404, 
+                                        "x": 527.0966390146277
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 337.64787585937404, 
+                            "x": 526.0966390146277
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_5", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines: Form lines"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONSTOLINES_1": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 119.51789590624992, 
+                            "x": 724.9821639521281
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISDISSOLVE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 120.91885231250004, 
+                            "x": 311.2853788914065
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "MODELERFIND-DEPRESSION-AREA_1", 
+                                "output": "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_1"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 1.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_2": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 121.37588745312473, 
+                            "x": 928.5465745302531
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": false, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISLINESTOPOLYGONS_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 1.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area2"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_3": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 409.53687718749916, 
+                            "x": 114.19213279587802
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYLOCATION_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 0.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": {
+                            "values": {
+                                "name": "formulatodistinguishknollsandauxiliarycontours"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD_NAME": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator:type"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SAGAINVERTGRID_1": {
+                "values": {
+                    "name": "SAGAINVERTGRID_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 119.81747404765602, 
+                            "x": 107.13710755315799
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "GRID": {
+                            "values": {
+                                "name": "dem"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:invertgrid", 
+                    "description": "Invert grid"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "MODELERFIND-DEPRESSION-AREA_1": {
+                "values": {
+                    "name": "MODELERFIND-DEPRESSION-AREA_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 43.367075810936484, 
+                            "x": 312.1286909154088
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "dem": {
+                            "values": {
+                                "alg": "SAGAINVERTGRID_1", 
+                                "output": "INVERSE"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "modeler:find-depression-area", 
+                    "description": "Find depression area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDISSOLVE_2": {
+                "values": {
+                    "name": "QGISDISSOLVE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 266.155048906249, 
+                            "x": 731.5465745302531
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "DISSOLVE_ALL": true, 
+                        "FIELD": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:dissolve", 
+                    "description": "Dissolve: knolls in distance"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISDISSOLVE_1": {
+                "values": {
+                    "name": "QGISDISSOLVE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 41.29952179687484, 
+                            "x": 722.0776577333781
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "DISSOLVE_ALL": true, 
+                        "FIELD": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:dissolve", 
+                    "description": "Dissolve"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONCENTROIDS_2": {
+                "values": {
+                    "name": "QGISPOLYGONCENTROIDS_2", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Knolls", 
+                                "pos": {
+                                    "values": {
+                                        "y": 340.155048906249, 
+                                        "x": 937.5465745302531
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 266.155048906249, 
+                            "x": 935.5465745302531
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISLINESTOPOLYGONS_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygoncentroids", 
+                    "description": "Polygon centroids: final knolls"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONCENTROIDS_1": {
+                "values": {
+                    "name": "QGISPOLYGONCENTROIDS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 193.8734964374994, 
+                            "x": 318.09663901462795
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygoncentroids", 
+                    "description": "Polygon centroids: distance"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISPOLYGONSTOLINES_3": {
+                "values": {
+                    "name": "QGISPOLYGONSTOLINES_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 196.15504890624902, 
+                            "x": 729.5465745302531
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISDISSOLVE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:polygonstolines", 
+                    "description": "Polygons to lines: knolls in distance"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISLINESTOPOLYGONS_2": {
+                "values": {
+                    "name": "QGISLINESTOPOLYGONS_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 196.15504890624902, 
+                            "x": 933.5465745302531
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONSTOLINES_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:linestopolygons", 
+                    "description": "Lines to polygons: knolls in distance"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISLINESTOPOLYGONS_1": {
+                "values": {
+                    "name": "QGISLINESTOPOLYGONS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 41.75655693749991, 
+                            "x": 926.8663832490029
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONSTOLINES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:linestopolygons", 
+                    "description": "Lines to polygons"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_1": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 268.8734964374994, 
+                            "x": 320.09663901462795
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISPOLYGONCENTROIDS_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "maximalradiusofknollmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: distance from center"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_2": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 340.155048906249, 
+                            "x": 733.3519637333777
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "SAGAPOLYGONCENTROIDS_1", 
+                                "output": "CENTROIDS"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "halfdistancebetweenthecentersoftwoknollsmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer: gaps between knolls"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SAGAPOLYGONCENTROIDS_1": {
+                "values": {
+                    "name": "SAGAPOLYGONCENTROIDS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 410.155048906249, 
+                            "x": 525.3519637333777
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "POLYGONS": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_4", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "METHOD         ": true
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:polygoncentroids", 
+                    "description": "Polygon centroids: knolls"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYLOCATION_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYLOCATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 268.48099643749936, 
+                            "x": 113.66663901462789
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "PREDICATE": [
+                            "within"
+                        ], 
+                        "PRECISION": 1.0, 
+                        "INTERSECT": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbylocation", 
+                    "description": "Extract by location: knoll"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 119.63961743749974, 
+                            "x": 520.173151514628
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 5, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "109", 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: smaller than"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_3": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 194.8734964374994, 
+                            "x": 113.13127203025294
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 5, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_2", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "109", 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: smaller than 2"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_2": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 42.279234874999986, 
+                            "x": 515.8579915468749
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 2, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "4", 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: bigger than "
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_5": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_5", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 339.6180248749989, 
+                            "x": 322.10142104587794
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_3", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "2", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: Form_line"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_4": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_4", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 409.92711073437385, 
+                            "x": 319.4212297646279
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_3", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "1", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: knoll"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

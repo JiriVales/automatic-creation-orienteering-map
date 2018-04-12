@@ -1,0 +1,196 @@
+{
+    "values": {
+        "inputs": {
+            "digitalterrainmodelraster": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 28.47287500000001, 
+                            "x": 116.18247064062498
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "digitalterrainmodelraster", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Digital elevation model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "vzorec": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 151.10000000000002, 
+                            "x": 113.88247064062512
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "vzorec", 
+                            "default": "if((\"ELEV\" % 25)=0,1,0)", 
+                            "value": "if((\"ELEV\" % 25)=0,1,0)", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Formula for thickened contours (25 = interval of thickened contour is 25 meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "contourinterval": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 81.59403025, 
+                            "x": 112.84693371875002
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "contourinterval", 
+                            "min": 0.5, 
+                            "default": 5.0, 
+                            "max": 20.0, 
+                            "value": 5.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Contour interval"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "OUTPUT_LAYER_ALGQGISFIELDCALCULATOR_2": "Contours with attribute \"thick\" (selected thickened contours).\nFormat: vector, polyline", 
+            "ALG_DESC": "Automatic creation of contours. Creating contours from DEM (digital elevation model) and selected thickened contours in attribute \"thick\" (value 0 or 1).\nUsed tools: Contour (GDAL), Field calculator", 
+            "contourinterval": "Difference in elevation between successive contour lines.\nFormat: number (may be decimal) (0.5 - 20.0)\nUnits: meters\nDefault value: 5", 
+            "min": "Shorter contours than the specified value will be deleted.", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "digitalterrainmodelraster": "Raster representing the height of the terrain.\nFormat: raster", 
+            "maximumdistancebetweentheoriginalandthesimplifiedcurvedouglaspeuckeralgorithm": "Parameter for curve simplification using the Douglas-Peucker algorithm. The number specifies the maximum distance of the simplified curve from the original.", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "OUTPUT_ALGQGISDELETECOLUMN_1": "Contours for orienteering with attributes \"ELEV\" (elevation) and \"thickened\" (1 = thickened contour)", 
+            "minimumcontourlengthelimination": "", 
+            "minimumanglebetweentwoconsecutivesegmentsinhermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Minimum angle.", 
+            "distancebetweenthecreatedpointshermitesplineinterpolation": "Curve smoothing parameter using Hermite Spline interpolation. Distance between the created points.", 
+            "vzorec": "if((\"ELEV\" % (thickened contour interval))=0,1,0)\nIf the contour elevation is divided by the thickened contour interval and the rest is 0 (it is the thickened contour), if not, the value of the attribute is 0. The name of attribute with values 0 or 1 is thick.\nIf there is not principal contour interval of 5 meters, thickened contour interval after the modulo must be changed.\nWhen the interval of thickened contours is a decimal number, it must be written with a dot. For example: 12.5 -> if((\"ELEV\" % 12.5)=0,1,0)).\nFormat: String\nDefault value: if((\"ELEV\" % 25)=0,1,0)"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create principal and thickened contours", 
+        "algs": {
+            "QGISFIELDCALCULATOR_2": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_2", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Contours", 
+                                "pos": {
+                                    "values": {
+                                        "y": 256.34999999999997, 
+                                        "x": 398.25
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 155.85000000000002, 
+                            "x": 390.55
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "GDALOGRCONTOUR_1", 
+                                "output": "OUTPUT_VECTOR"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 0.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": {
+                            "values": {
+                                "name": "vzorec"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD_NAME": "thick"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: select thickened contours"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRCONTOUR_1": {
+                "values": {
+                    "name": "GDALOGRCONTOUR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 40.36437499999997, 
+                            "x": 394.418625
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_RASTER": {
+                            "values": {
+                                "name": "digitalterrainmodelraster"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "INTERVAL": {
+                            "values": {
+                                "name": "contourinterval"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD_NAME": "ELEV", 
+                        "EXTRA": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:contour", 
+                    "description": "Contour (GDAL)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}
