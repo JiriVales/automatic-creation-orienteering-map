@@ -1,0 +1,11 @@
+##Buildings differentiation by size (ISOM)=name
+##layerofbuildings=vector
+##buildingslarge=output vector
+##buildingmedium=output vector
+##buildingsmall=output vector
+outputs_QGISFIELDCALCULATOR_1=processing.runalg('qgis:fieldcalculator', layerofbuildings,'area',0,10.0,2.0,True,'$area',None)
+outputs_QGISFIELDCALCULATOR_2=processing.runalg('qgis:fieldcalculator', outputs_QGISFIELDCALCULATOR_1['OUTPUT_LAYER'],'type',1,1.0,1.0,True,'if(("area" < 56.25,1,if(("area" > 5625,3,2))',None)
+outputs_QGISEXTRACTBYATTRIBUTE_2=processing.runalg('qgis:extractbyattribute', outputs_QGISFIELDCALCULATOR_2['OUTPUT_LAYER'],'type',0,'2',buildingmedium)
+outputs_QGISEXTRACTBYATTRIBUTE_3=processing.runalg('qgis:extractbyattribute', outputs_QGISFIELDCALCULATOR_2['OUTPUT_LAYER'],'type',0,'3',buildingslarge)
+outputs_QGISEXTRACTBYATTRIBUTE_1=processing.runalg('qgis:extractbyattribute', outputs_QGISFIELDCALCULATOR_2['OUTPUT_LAYER'],'type',0,'1',None)
+outputs_SAGAPOLYGONCENTROIDS_1=processing.runalg('saga:polygoncentroids', outputs_QGISEXTRACTBYATTRIBUTE_1['OUTPUT'],True,buildingsmall)
