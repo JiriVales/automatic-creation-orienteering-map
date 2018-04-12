@@ -1,0 +1,584 @@
+{
+    "values": {
+        "inputs": {
+            "layerofroadsways": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 33.0, 
+                            "x": 120.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "layerofroadsways", 
+                            "shapetype": [
+                                1
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Layer of roads, ways"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "expressionforextractfootpathfromosmbyattribute": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 286.0, 
+                            "x": 117.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "expressionforextractfootpathfromosmbyattribute", 
+                            "default": "\"fclass\" IN ('track_grade4','track_grade5')", 
+                            "value": "\"fclass\" IN ('track_grade4','track_grade5')", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Expression for extract  Footpath from OSM by attribute"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "expressionforextractsmallfootpathfromosmbyattribute": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 362.0, 
+                            "x": 113.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "expressionforextractsmallfootpathfromosmbyattribute", 
+                            "default": "\"fclass\" IN ('path','footway')", 
+                            "value": "\"fclass\" IN ('path','footway')", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Expression for extract Small footpath from OSM by attribute"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "expressionforextractvehicletrackfromosmbyattribute": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 206.0, 
+                            "x": 120.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "expressionforextractvehicletrackfromosmbyattribute", 
+                            "default": "\"fclass\" IN ('track_grade3')", 
+                            "value": "\"fclass\" IN ('track_grade3')", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Expression for extract Vehicle track from OSM by attribute"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "expressionforextractroadfromosmbyattribute": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 132.0, 
+                            "x": 120.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "expressionforextractroadfromosmbyattribute", 
+                            "default": "\"fclass\" IN ('track_grade1','track_grade2')", 
+                            "value": "\"fclass\" IN ('track_grade1','track_grade2')", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Expression for extract Road from OSM by attribute"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "expressionforextractwideroadfromosmbyattribute": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 83.0, 
+                            "x": 119.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "expressionforextractwideroadfromosmbyattribute", 
+                            "default": "\"fclass\" IN ('primary','secondary','tertiary','trunk', 'motorway', 'service', 'unclassified', 'living_street', 'pedestrian')", 
+                            "value": "\"fclass\" IN ('primary','secondary','tertiary','trunk', 'motorway', 'service', 'unclassified', 'living_street', 'pedestrian')", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Expression for extract Wide road from OSM by attribute"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Algorithm for converting paths or roads from OSM layer to layers according to ISOM.\n\nThe default values \u200b\u200bcorrespond to the attributes and values \u200b\u200bof the road layer (.shp) from geofabrik.de\n\nType of key highway is in attribute fclass.\nValues are primary, tertiary, secondary, trunk, motorway, service, unclassified, living_street, pedestrian, path, footway,..\nGrade of tracktype are values (in fclass): track_grade1, track_grade2, track_grade3, track_grade4, track_grade5.\n\nUsed tools: Select by expression, Save selected features", 
+            "layerofroadsways": "Layer of roads, paths from OpenStreetMap.\nFormat: vector, polyline", 
+            "OUTPUT_LAYER_ALGQGISSAVESELECTEDFEATURES_4": "Footpath (ISOM: 505)\nFormat: vector, polyline", 
+            "OUTPUT_LAYER_ALGQGISSAVESELECTEDFEATURES_5": "Small footpath (ISOM: 506)\nFormat: vector, polyline", 
+            "expressionforextractfootpathfromosmbyattribute": "\"name of attribute\" IN ('name of \ncorresponding value for footpaths') \nFormat: String\nDefault value: \"fclass\" IN ('track_grade4','track_grade5')", 
+            "OUTPUT_LAYER_ALGQGISSAVESELECTEDFEATURES_1": "Wide road (ISOM: 502)\nFormat: vector, polyline", 
+            "OUTPUT_LAYER_ALGQGISSAVESELECTEDFEATURES_2": "Road (ISOM: 503)\nFormat: vector, polyline", 
+            "OUTPUT_LAYER_ALGQGISSAVESELECTEDFEATURES_3": "Vehicle track (ISOM: 504)\nFormat: vector, polyline", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "expressionforextractwideroadfromosmbyattribute": "\"name of attribute\" IN ('name of \ncorresponding value for wide roads') \nFormat: String\nDefault value: \"fclass\" IN ('primary','secondary','tertiary','trunk', 'motorway', 'service', 'unclassified', 'living_street', 'pedestrian')", 
+            "expressionforextractvehicletrackfromosmbyattribute": "\"name of attribute\" IN ('name of \ncorresponding value for vehicle tracks') \nFormat: String\nDefault value: \"fclass\" IN ('track_grade3')", 
+            "expressionforextractroadfromosmbyattribute": "\"name of attribute\" IN ('name of \ncorresponding value for roads') \nFormat: String\nDefault value: \"fclass\" IN ('track_grade1','track_grade2')", 
+            "expressionforextractsmallfootpathfromosmbyattribute": "\"name of attribute\" IN ('name of \ncorresponding value for small footpaths') \nFormat: String\nDefault value: \"fclass\" IN ('path','footway')"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create roads, paths (OSM)", 
+        "algs": {
+            "QGISSELECTBYEXPRESSION_1": {
+                "values": {
+                    "name": "QGISSELECTBYEXPRESSION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 340.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "LAYERNAME": {
+                            "values": {
+                                "name": "layerofroadsways"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXPRESSION": {
+                            "values": {
+                                "name": "expressionforextractwideroadfromosmbyattribute"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbyexpression", 
+                    "description": "Select by expression: Wide road"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSELECTBYEXPRESSION_2": {
+                "values": {
+                    "name": "QGISSELECTBYEXPRESSION_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 337.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [
+                        "QGISSAVESELECTEDFEATURES_1"
+                    ], 
+                    "params": {
+                        "LAYERNAME": {
+                            "values": {
+                                "name": "layerofroadsways"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXPRESSION": {
+                            "values": {
+                                "name": "expressionforextractroadfromosmbyattribute"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbyexpression", 
+                    "description": "Select by expression: Road"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSELECTBYEXPRESSION_3": {
+                "values": {
+                    "name": "QGISSELECTBYEXPRESSION_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 209.0, 
+                            "x": 335.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [
+                        "QGISSAVESELECTEDFEATURES_2"
+                    ], 
+                    "params": {
+                        "LAYERNAME": {
+                            "values": {
+                                "name": "layerofroadsways"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXPRESSION": {
+                            "values": {
+                                "name": "expressionforextractvehicletrackfromosmbyattribute"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbyexpression", 
+                    "description": "Select by expression: Vehicle track"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSELECTBYEXPRESSION_4": {
+                "values": {
+                    "name": "QGISSELECTBYEXPRESSION_4", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 285.0, 
+                            "x": 326.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [
+                        "QGISSAVESELECTEDFEATURES_3"
+                    ], 
+                    "params": {
+                        "LAYERNAME": {
+                            "values": {
+                                "name": "layerofroadsways"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXPRESSION": {
+                            "values": {
+                                "name": "expressionforextractfootpathfromosmbyattribute"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbyexpression", 
+                    "description": "Select by expression: Footpath"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSELECTBYEXPRESSION_5": {
+                "values": {
+                    "name": "QGISSELECTBYEXPRESSION_5", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 360.0, 
+                            "x": 329.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [
+                        "QGISSAVESELECTEDFEATURES_4"
+                    ], 
+                    "params": {
+                        "LAYERNAME": {
+                            "values": {
+                                "name": "layerofroadsways"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXPRESSION": {
+                            "values": {
+                                "name": "expressionforextractsmallfootpathfromosmbyattribute"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbyexpression", 
+                    "description": "Select by expression: Small footpath"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSAVESELECTEDFEATURES_2": {
+                "values": {
+                    "name": "QGISSAVESELECTEDFEATURES_2", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Road", 
+                                "pos": {
+                                    "values": {
+                                        "y": 134.0, 
+                                        "x": 761.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 134.0, 
+                            "x": 546.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYEXPRESSION_2", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:saveselectedfeatures", 
+                    "description": "Save selected features: Road"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSAVESELECTEDFEATURES_3": {
+                "values": {
+                    "name": "QGISSAVESELECTEDFEATURES_3", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Vehicle_track", 
+                                "pos": {
+                                    "values": {
+                                        "y": 210.0, 
+                                        "x": 758.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 210.0, 
+                            "x": 543.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYEXPRESSION_3", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:saveselectedfeatures", 
+                    "description": "Save selected features: Vehicle track"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSAVESELECTEDFEATURES_1": {
+                "values": {
+                    "name": "QGISSAVESELECTEDFEATURES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Wide_road", 
+                                "pos": {
+                                    "values": {
+                                        "y": 59.0, 
+                                        "x": 761.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 58.0, 
+                            "x": 551.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYEXPRESSION_1", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:saveselectedfeatures", 
+                    "description": "Save selected features: Wide road"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSAVESELECTEDFEATURES_4": {
+                "values": {
+                    "name": "QGISSAVESELECTEDFEATURES_4", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Footpath", 
+                                "pos": {
+                                    "values": {
+                                        "y": 287.0, 
+                                        "x": 747.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 287.0, 
+                            "x": 536.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYEXPRESSION_4", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:saveselectedfeatures", 
+                    "description": "Save selected features: Footpath"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSAVESELECTEDFEATURES_5": {
+                "values": {
+                    "name": "QGISSAVESELECTEDFEATURES_5", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT_LAYER": {
+                            "values": {
+                                "description": "Small_footpath", 
+                                "pos": {
+                                    "values": {
+                                        "y": 361.0, 
+                                        "x": 747.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 361.0, 
+                            "x": 535.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYEXPRESSION_5", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:saveselectedfeatures", 
+                    "description": "Save selected features: Small footpath"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

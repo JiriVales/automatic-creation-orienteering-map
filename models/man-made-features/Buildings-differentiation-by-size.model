@@ -1,0 +1,292 @@
+{
+    "values": {
+        "inputs": {
+            "layerofbuildings": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 51.0, 
+                            "x": 129.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "layerofbuildings", 
+                            "shapetype": [
+                                -1
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Layer of buildings"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Tool for buildings resolution by size. Values \u200b\u200bare based on ISOM.\nUsed tools: Field calculator, Extract by attribute, Polygon centroids", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "layerofbuildings": "Format: vector, polygon", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "null": "", 
+            "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_3": "Buildings bigger than 75 x 75 m.\nFormat: vector, polygon", 
+            "OUTPUT_ALGQGISEXTRACTBYATTRIBUTE_2": "Buildings bigger than 7.5 x 7.5 m and less than 75 x 75 m.\nFormat: vector, polygon", 
+            "CENTROIDS_ALGSAGAPOLYGONCENTROIDS_1": "Buildings less than 7.5 x 7.5 m.\nFormat: vector, point"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Buildings differentiation by size (ISOM)", 
+        "algs": {
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 51.0, 
+                            "x": 342.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "name": "layerofbuildings"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD_PRECISION": 2.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_2": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 49.0, 
+                            "x": 553.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 1, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 1.0, 
+                        "FIELD_LENGTH": 1.0, 
+                        "FORMULA": "if((\"area\" < 56.25,1,if((\"area\" > 5625,3,2))", 
+                        "FIELD_NAME": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: type"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 130.0, 
+                            "x": 558.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [
+                        "QGISEXTRACTBYATTRIBUTE_2", 
+                        "QGISEXTRACTBYATTRIBUTE_3"
+                    ], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_2", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "1", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: type 1"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_3": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_3", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Buildings_large", 
+                                "pos": {
+                                    "values": {
+                                        "y": 185.0, 
+                                        "x": 350.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 128.0, 
+                            "x": 349.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [
+                        "QGISEXTRACTBYATTRIBUTE_2"
+                    ], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_2", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "3", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: type 3"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_2": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Building_medium", 
+                                "pos": {
+                                    "values": {
+                                        "y": 185.0, 
+                                        "x": 133.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 130.0, 
+                            "x": 136.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_2", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "2", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: type 2"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SAGAPOLYGONCENTROIDS_1": {
+                "values": {
+                    "name": "SAGAPOLYGONCENTROIDS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "CENTROIDS": {
+                            "values": {
+                                "description": "Building_small", 
+                                "pos": {
+                                    "values": {
+                                        "y": 238.0, 
+                                        "x": 560.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 185.0, 
+                            "x": 560.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "POLYGONS": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "METHOD         ": true
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:polygoncentroids", 
+                    "description": "Polygon centroids"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

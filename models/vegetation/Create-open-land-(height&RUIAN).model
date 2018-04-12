@@ -1,0 +1,220 @@
+{
+    "values": {
+        "inputs": {
+            "ruianparcelswithattributes": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 55.0, 
+                            "x": 120.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "ruianparcelswithattributes", 
+                            "shapetype": [
+                                2
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "RUIAN: parcels with attributes"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "expressionforextractcorrespondingpolygonsfromruianbyattribute": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 56.0, 
+                            "x": 556.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "expressionforextractcorrespondingpolygonsfromruianbyattribute", 
+                            "default": "\"druhpozemk\" IN ('5','7','8')", 
+                            "value": "\"druhpozemk\" IN ('5','7','8')", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Expression for extract corresponding polygons from RUIAN by attribute"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "vegetationheightopenland": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 135.0, 
+                            "x": 116.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "vegetationheightopenland", 
+                            "shapetype": [
+                                2
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Vegetation height: open land"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Tool to find open land. Intersections between RUIAN parcel with land type (attribute) = 5 (garden) or 7 (permanent grassland) or 8 (permanent grassland) and open land by height.\nUsed tools: Select by expression, Save selected features, Extract by location", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "vegetationheightopenland": "Open land by vegetation height.\nFormat: vector, polygon", 
+            "expressionforextractcorrespondingpolygonsfromruianbyattribute": "The expression for selecting polygons from RUIAN corresponding gardens or permanent grasslands (attribute land type = 5 (garden) or 7 (permanent grassland) or 8 (permanent grassland)).\n\"name of attribute\" IN ('5','7','8')\nFormat: String\nDefault value: \"druhpozemk\" IN ('5','7','8')", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "ruianparcelswithattributes": "Layer of parcels (RUIAN), attribute name of type of land must be druhpozemk (or you must change name of attribute in Expression for extract corresponding polygons from RUIAN by attribute).\nFormat: vector, polygon", 
+            "OUTPUT_ALGQGISEXTRACTBYLOCATION_1": "Open land.\nFormat: vector, polygon"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create open land (height&RUIAN)", 
+        "algs": {
+            "QGISSELECTBYEXPRESSION_1": {
+                "values": {
+                    "name": "QGISSELECTBYEXPRESSION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 56.0, 
+                            "x": 337.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "LAYERNAME": {
+                            "values": {
+                                "name": "ruianparcelswithattributes"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "EXPRESSION": {
+                            "values": {
+                                "name": "expressionforextractcorrespondingpolygonsfromruianbyattribute"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "METHOD": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:selectbyexpression", 
+                    "description": "Select by expression"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYLOCATION_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYLOCATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "OUTPUT": {
+                            "values": {
+                                "description": "Open_land", 
+                                "pos": {
+                                    "values": {
+                                        "y": 224.0, 
+                                        "x": 584.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 226.0, 
+                            "x": 348.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "name": "vegetationheightopenland"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "PREDICATE": [
+                            "intersects"
+                        ], 
+                        "PRECISION": 1.0, 
+                        "INTERSECT": {
+                            "values": {
+                                "alg": "QGISSAVESELECTEDFEATURES_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbylocation", 
+                    "description": "Extract by location"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSAVESELECTEDFEATURES_1": {
+                "values": {
+                    "name": "QGISSAVESELECTEDFEATURES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 139.0, 
+                            "x": 345.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISSELECTBYEXPRESSION_1", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:saveselectedfeatures", 
+                    "description": "Save selected features"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

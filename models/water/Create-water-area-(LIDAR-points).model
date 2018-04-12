@@ -1,0 +1,582 @@
+{
+    "values": {
+        "inputs": {
+            "radiusdensityestimation": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 116.0, 
+                            "x": 142.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "radiusdensityestimation", 
+                            "min": 0.5, 
+                            "default": 5.0, 
+                            "max": 500.0, 
+                            "value": 5.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Radius (density estimation)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "densityestimationcellsize": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 118.0, 
+                            "x": 358.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "densityestimationcellsize", 
+                            "min": 0.1, 
+                            "default": 2.0, 
+                            "max": 500.0, 
+                            "value": 2.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Density estimation: cellsize"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumareaofthewaterarea": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 120.0, 
+                            "x": 576.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumareaofthewaterarea", 
+                            "default": "500", 
+                            "value": "500", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Minimum area of \u200b\u200bthe water area"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximaltolerancevaluevgeneralizesmooth": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 279.0, 
+                            "x": 579.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximaltolerancevaluevgeneralizesmooth", 
+                            "min": 0, 
+                            "default": 2, 
+                            "max": 500, 
+                            "value": 2, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Maximal tolerance value (v.generalize.smooth)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "lidarpoints": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 46.0, 
+                            "x": 145.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "lidarpoints", 
+                            "shapetype": [
+                                0
+                            ], 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "LIDAR points"
+                        }, 
+                        "class": "processing.core.parameters.ParameterVector"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "tolerancesimplifygeometries": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 278.0, 
+                            "x": 363.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "tolerancesimplifygeometries", 
+                            "min": 0, 
+                            "default": 2, 
+                            "max": 500, 
+                            "value": 2, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Tolerance (Simplify geometries)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "enlargeofpolygonofthewaterareameters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 205.0, 
+                            "x": 146.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "enlargeofpolygonofthewaterareameters", 
+                            "min": 0.1, 
+                            "default": 5.0, 
+                            "max": 1000.0, 
+                            "value": 5.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Enlarge of polygon of the water area (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "ALG_DESC": "Instrument for creating water areas using areas where the number of reflected points is zero or minimal (laser aviation scanning has been absorbed).\nUsed tools: Kernel density estimation (SAGA), Invert data/no-data (SAGA), Polygonize (raster to vector). Field calculator, Fill holes, Fixed distance buffer, Extract by attribute, Simplify geometries, v.generalize.smooth", 
+            "output_ALGGRASS7V.GENERALIZE.SMOOTH_1": "Layer of water areas.\nFormat: vector, polygon", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "minimumareaofthewaterarea": "Format: number\nUnits: meters\nDefault value: 500\n", 
+            "densityestimationcellsize": "Parameter of Kernel density estimation. Grid pixel size. \nFormat: number (0.1 - 500, can be decimal)\nUnits: meters\nDefault value: 2.0", 
+            "radiusdensityestimation": "Parameter of Kernel density estimation. Radius. It hangs on the average point density.\nFormat: number (0.5 - 500, can be decimal)\nUnits: meters\nDefault value: 5.0\n", 
+            "ALG_VERSION": "1.0", 
+            "maximaltolerancevaluevgeneralizesmooth": "Parameter for smoothing polygon boundary using Chaiken algorithm. Distance between the created points at the polygon boundary. \nFormat: integer (0 - 500)\nUnits: meters\nDefault value: 2", 
+            "lidarpoints": "Layer of LIDAR points.\nFormat: vector, points", 
+            "tolerancesimplifygeometries": "Parameter of Simplify geometries. The maximum distance between the original and the generalized polygon boundary.\nFormat: integer (0 - 500)\nUnits: meters\nDefault value: 2", 
+            "enlargeofpolygonofthewaterareameters": "During the use of the Kernel density estimation tool, the water surface was reduced by value of Radius. This parameter is used to re-magnify it. It is advisable to enter the same value as the Radius parameter.\nFormat: number (0.1 - 1000, can be decimal)\nUnits: meters\nDefault value: 5.0\n", 
+            "ALG_HELP_CREATOR": "Jiri Vales"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create water area (LIDAR points)", 
+        "algs": {
+            "GRASS7V.GENERALIZE.SMOOTH_1": {
+                "values": {
+                    "name": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "output": {
+                            "values": {
+                                "description": "Water_area", 
+                                "pos": {
+                                    "values": {
+                                        "y": 393.0, 
+                                        "x": 776.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 348.0, 
+                            "x": 576.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "angle_thresh": 3.0, 
+                        "GRASS_SNAP_TOLERANCE_PARAMETER": -1.0, 
+                        "GRASS_MIN_AREA_PARAMETER": 0.0001, 
+                        "-l": true, 
+                        "look_ahead": 7.0, 
+                        "GRASS_OUTPUT_TYPE_PARAMETER": 0, 
+                        "-t": false, 
+                        "beta": 1.0, 
+                        "slide": 0.5, 
+                        "alpha": 1.0, 
+                        "threshold": {
+                            "values": {
+                                "name": "maximaltolerancevaluevgeneralizesmooth"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "input": {
+                            "values": {
+                                "alg": "QGISSIMPLIFYGEOMETRIES_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "GRASS_REGION_PARAMETER": null, 
+                        "method": 3
+                    }, 
+                    "active": true, 
+                    "consoleName": "grass7:v.generalize.smooth", 
+                    "description": "v.generalize.smooth - Vector based smooth generalization."
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISSIMPLIFYGEOMETRIES_1": {
+                "values": {
+                    "name": "QGISSIMPLIFYGEOMETRIES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 349.0, 
+                            "x": 359.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFILLHOLES_2", 
+                                "output": "Results"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "TOLERANCE": {
+                            "values": {
+                                "name": "tolerancesimplifygeometries"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:simplifygeometries", 
+                    "description": "Simplify geometries"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SAGAKERNELDENSITYESTIMATION_1": {
+                "values": {
+                    "name": "SAGAKERNELDENSITYESTIMATION_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 47.0, 
+                            "x": 362.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "KERNEL": 0, 
+                        "OUTPUT_EXTENT": null, 
+                        "TARGET_USER_SIZE": {
+                            "values": {
+                                "name": "densityestimationcellsize"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "TARGET_USER_FITS": 0, 
+                        "POINTS": {
+                            "values": {
+                                "name": "lidarpoints"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "RADIUS": {
+                            "values": {
+                                "name": "radiusdensityestimation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "POPULATION": "1"
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:kerneldensityestimation", 
+                    "description": "Kernel density estimation"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_2": {
+                "values": {
+                    "name": "QGISFILLHOLES_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 276.0, 
+                            "x": 152.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": 1000.0, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISFIXEDDISTANCEBUFFER_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes: after fixed distance buffer"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 123.0, 
+                            "x": 792.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "GDALOGRPOLYGONIZE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 3.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_1": {
+                "values": {
+                    "name": "QGISFILLHOLES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 205.0, 
+                            "x": 580.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": 10000.0, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIXEDDISTANCEBUFFER_1": {
+                "values": {
+                    "name": "QGISFIXEDDISTANCEBUFFER_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 207.0, 
+                            "x": 367.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFILLHOLES_1", 
+                                "output": "Results"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "SEGMENTS": 5.0, 
+                        "DISSOLVE": false, 
+                        "DISTANCE": {
+                            "values": {
+                                "name": "enlargeofpolygonofthewaterareameters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fixeddistancebuffer", 
+                    "description": "Fixed distance buffer"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 208.0, 
+                            "x": 794.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "minimumareaofthewaterarea"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: area bigger than"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRPOLYGONIZE_1": {
+                "values": {
+                    "name": "GDALOGRPOLYGONIZE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 46.0, 
+                            "x": 786.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "SAGAINVERTDATANODATA_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD": "DN"
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:polygonize", 
+                    "description": "Polygonize (raster to vector)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SAGAINVERTDATANODATA_1": {
+                "values": {
+                    "name": "SAGAINVERTDATANODATA_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 47.0, 
+                            "x": 575.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "SAGAKERNELDENSITYESTIMATION_1", 
+                                "output": "TARGET_OUT_GRID"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:invertdatanodata", 
+                    "description": "Invert data/no-data"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}

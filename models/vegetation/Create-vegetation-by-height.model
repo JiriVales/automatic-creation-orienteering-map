@@ -1,0 +1,747 @@
+{
+    "values": {
+        "inputs": {
+            "minimumareaofholesinvegetationslowrunningpolygonsmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 175.0, 
+                            "x": 310.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumareaofholesinvegetationslowrunningpolygonsmeters", 
+                            "min": 10, 
+                            "default": 225, 
+                            "max": 5000, 
+                            "value": 225, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Minimum area of holes in vegetation: slow running polygons (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "formulaforheightdifferentiation": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 107.0, 
+                            "x": 100.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "formulaforheightdifferentiation", 
+                            "default": "ifelse(a<1, 1,ifelse(a<6, 2, ifelse(a<10, 3, 4)))", 
+                            "value": "ifelse(a<1, 1,ifelse(a<6, 2, ifelse(a<10, 3, 4)))", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Formula for height differentiation"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "numberoftheminimumareaofvegetationpolygons": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 40.0775, 
+                            "x": 933.6925
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "numberoftheminimumareaofvegetationpolygons", 
+                            "default": "225", 
+                            "value": "225", 
+                            "multiline": false, 
+                            "evaluateExpressions": false, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Minimum area of vegetation/open land polygons (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterString"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumareaofholesinopenlandpolygons": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 174.0, 
+                            "x": 104.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumareaofholesinopenlandpolygons", 
+                            "min": 10, 
+                            "default": 110, 
+                            "max": 5000, 
+                            "value": 110, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Minimum area of holes in open land polygons (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedpolygonboundary": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 110.10249999999999, 
+                            "x": 934.1025
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "maximumdistancemetersbetweentheoriginalandthesimplifiedpolygonboundary", 
+                            "min": 0.5, 
+                            "default": 3.0, 
+                            "max": 50.0, 
+                            "value": 3.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Maximum distance (meters) between the original and the simplified polygon boundary"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "normaliseddigitalsurfacemodelraster": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 52.0, 
+                            "x": 102.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "normaliseddigitalsurfacemodelraster", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Normalised digital surface model (raster)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "distancemetersbetweenthecreatedpointsatthepolygonboundarychaikenalgorithm": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 171.0, 
+                            "x": 931.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "distancemetersbetweenthecreatedpointsatthepolygonboundarychaikenalgorithm", 
+                            "min": 0.5, 
+                            "default": 2.0, 
+                            "max": 50.0, 
+                            "value": 2.0, 
+                            "hidden": false, 
+                            "isInteger": false, 
+                            "optional": false, 
+                            "description": "Distance (meters) between the created points at the polygon boundary (Chaiken algorithm)\n"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "minimumareaofholesinvegetationwalkfightpolygonsmeters": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 302.20500000000004, 
+                            "x": 545.3325
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "minimumareaofholesinvegetationwalkfightpolygonsmeters", 
+                            "min": 10, 
+                            "default": 110, 
+                            "max": 5000, 
+                            "value": 110, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "optional": false, 
+                            "description": "Minimum area of holes in vegetation: walk, fight polygons (meters)"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {
+            "minimumareaofholesinvegetationslowrunningpolygonsmeters": "Holes in vegetation polygons (slow running) smaller than the specified value will be deleted.\nFormat: number, integer (10-5000) \nUnits: meters \nDefault value: 225", 
+            "formulaforheightdifferentiation": "ifelse(a<1, X,ifelse(a<Y, 2, ifelse(a<Z, 3, 4))),\nwhere X = maximal height (meters) of open land; Y = maximal height (meters) of vegetation, walk, fight; Z = maximal height (meters) of vegetation, slow running\nRecommended values:\nX = 1; Y = 6; Z = 10\nFormat: String \nDefault value: ifelse(a<1, 1,ifelse(a<6, 2, ifelse(a<10, 3, 4)))\n", 
+            "numberoftheminimumareaofvegetationpolygons": "Polygons of vegetation smaller than the specified value will be deleted.\nFormat: number, integer \nUnits: meters \nDefault value: 225\n", 
+            "Results_ALGQGISFILLHOLES_1": "Area of Vegetation: walk or Vegetation: fight.\nFormat: vector, polygon", 
+            "Results_ALGQGISFILLHOLES_2": "Area of Vegetation: slow running.\nFormat: vector, polygon", 
+            "Results_ALGQGISFILLHOLES_3": "Area of Vegetation: open land.\nFormat: vector, polygon", 
+            "ALG_CREATOR": "Jiri Vales", 
+            "ALG_DESC": "Creation of vegetation areas according to the height of the vegetation.\nUsed tools: Raster calculator (SAGA), Extract by attribute, Polygonize (raster to vector), Field calculator, v.generalize.simplify, v.generalize.smooth, Fill holes", 
+            "minimumareaofholesinopenlandpolygons": "Holes in vegetation polygons (open land) smaller than the specified value will be deleted.\nFormat: number, integer (10-5000) \nUnits: meters \nDefault value: 110", 
+            "ALG_VERSION": "1.0", 
+            "ALG_HELP_CREATOR": "Jiri Vales", 
+            "maximumdistancemetersbetweentheoriginalandthesimplifiedpolygonboundary": "Parameter for curve (polygon boundary) simplification using the Douglas-Peucker algorithm. The number specifies the maximum distance of the simplified curve from the original. \nFormat: number, can be decimal (0.5-50)\nUnits: meters\nDefault value: 3", 
+            "normaliseddigitalsurfacemodelraster": "Raster representing the difference between digital surface model and digital terrain model.\nFormat: raster\n\n", 
+            "distancemetersbetweenthecreatedpointsatthepolygonboundarychaikenalgorithm": "Parameter for smoothing polygon boundary using Chaiken algorithm. Distance between the created points at the polygon boundary.\nFormat: number, can be decimal (0.5-50)\nUnits: meters\nDefault value: 2", 
+            "minimumareaofholesinvegetationwalkfightpolygonsmeters": "Holes in vegetation polygons (walk, fight) smaller than the specified value will be deleted.\nFormat: number, integer (10-5000) \nUnits: meters \nDefault value: 110"
+        }, 
+        "group": "Automatic creation of orienteering map", 
+        "name": "Create vegetation by height", 
+        "algs": {
+            "SAGARASTERCALCULATOR_1": {
+                "values": {
+                    "name": "SAGARASTERCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 50.0, 
+                            "x": 309.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "GRIDS": {
+                            "values": {
+                                "name": "normaliseddigitalsurfacemodelraster"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "USE_NODATA": false, 
+                        "RESAMPLING": 3, 
+                        "FORMULA": {
+                            "values": {
+                                "name": "formulaforheightdifferentiation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "TYPE": 7, 
+                        "XGRIDS": []
+                    }, 
+                    "active": true, 
+                    "consoleName": "saga:rastercalculator", 
+                    "description": "Raster calculator: height differentiation"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GRASS7V.GENERALIZE.SMOOTH_1": {
+                "values": {
+                    "name": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 170.0, 
+                            "x": 724.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "angle_thresh": 3.0, 
+                        "GRASS_SNAP_TOLERANCE_PARAMETER": -1.0, 
+                        "GRASS_MIN_AREA_PARAMETER": 0.0001, 
+                        "-l": true, 
+                        "look_ahead": 7.0, 
+                        "GRASS_OUTPUT_TYPE_PARAMETER": 0, 
+                        "-t": false, 
+                        "beta": 1.0, 
+                        "slide": 0.5, 
+                        "alpha": 1.0, 
+                        "threshold": {
+                            "values": {
+                                "name": "distancemetersbetweenthecreatedpointsatthepolygonboundarychaikenalgorithm"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "input": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SIMPLIFY_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "GRASS_REGION_PARAMETER": null, 
+                        "method": 3
+                    }, 
+                    "active": true, 
+                    "consoleName": "grass7:v.generalize.smooth", 
+                    "description": "v.generalize.smooth - Vector based smooth generalization."
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFIELDCALCULATOR_1": {
+                "values": {
+                    "name": "QGISFIELDCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 103.0, 
+                            "x": 513.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "FIELD_TYPE": 0, 
+                        "NEW_FIELD": true, 
+                        "INPUT_LAYER": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD_PRECISION": 3.0, 
+                        "FIELD_LENGTH": 10.0, 
+                        "FORMULA": "$area", 
+                        "FIELD_NAME": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fieldcalculator", 
+                    "description": "Field calculator: area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_3": {
+                "values": {
+                    "name": "QGISFILLHOLES_3", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "Results": {
+                            "values": {
+                                "description": "Vegetation_open_land", 
+                                "pos": {
+                                    "values": {
+                                        "y": 307.15250000000003, 
+                                        "x": 114.37000000000003
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 235.6925, 
+                            "x": 100.6925
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": {
+                            "values": {
+                                "name": "minimumareaofholesinopenlandpolygons"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_3", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes: Open land"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_2": {
+                "values": {
+                    "name": "QGISFILLHOLES_2", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "Results": {
+                            "values": {
+                                "description": "Vegetation_slow_running", 
+                                "pos": {
+                                    "values": {
+                                        "y": 302.02500000000003, 
+                                        "x": 328.9849999999999
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 244.89749999999998, 
+                            "x": 311.99999999999994
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": {
+                            "values": {
+                                "name": "minimumareaofholesinvegetationslowrunningpolygonsmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_4", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes: Vegetation, slow running"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRPOLYGONIZE_1": {
+                "values": {
+                    "name": "GDALOGRPOLYGONIZE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 107.0, 
+                            "x": 310.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT": {
+                            "values": {
+                                "alg": "SAGARASTERCALCULATOR_1", 
+                                "output": "RESULT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:polygonize", 
+                    "description": "Polygonize (raster to vector)"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISFILLHOLES_1": {
+                "values": {
+                    "name": "QGISFILLHOLES_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "Results": {
+                            "values": {
+                                "description": "Vegetation_walk_fight", 
+                                "pos": {
+                                    "values": {
+                                        "y": 312.4599999999999, 
+                                        "x": 872.605
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 241.0, 
+                            "x": 935.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "Max_area": {
+                            "values": {
+                                "name": "minimumareaofholesinvegetationwalkfightpolygonsmeters"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "Polygons": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_5", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:fillholes", 
+                    "description": "Fill holes: Vegetation, walk, fight"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_1": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 48.0, 
+                            "x": 516.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 4, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GDALOGRPOLYGONIZE_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "4", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: dense vegetation, open land"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_3": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_3", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 171.0, 
+                            "x": 518.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "1", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: open land"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_2": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_2", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 49.0, 
+                            "x": 725.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 3, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "QGISFIELDCALCULATOR_1", 
+                                "output": "OUTPUT_LAYER"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": {
+                            "values": {
+                                "name": "numberoftheminimumareaofvegetationpolygons"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "FIELD": "area"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: area bigger than 144"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_5": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_5", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 242.0, 
+                            "x": 729.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "2", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute:  Vegetation, walk, fight"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "QGISEXTRACTBYATTRIBUTE_4": {
+                "values": {
+                    "name": "QGISEXTRACTBYATTRIBUTE_4", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 244.0, 
+                            "x": 519.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "OPERATOR": 0, 
+                        "INPUT": {
+                            "values": {
+                                "alg": "GRASS7V.GENERALIZE.SMOOTH_1", 
+                                "output": "output"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "VALUE": "3", 
+                        "FIELD": "type"
+                    }, 
+                    "active": true, 
+                    "consoleName": "qgis:extractbyattribute", 
+                    "description": "Extract by attribute: Vegetation, slow running"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GRASS7V.GENERALIZE.SIMPLIFY_1": {
+                "values": {
+                    "name": "GRASS7V.GENERALIZE.SIMPLIFY_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 107.0, 
+                            "x": 721.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "GRASS_SNAP_TOLERANCE_PARAMETER": -1.0, 
+                        "GRASS_MIN_AREA_PARAMETER": 0.0001, 
+                        "-l": true, 
+                        "look_ahead": 7.0, 
+                        "GRASS_OUTPUT_TYPE_PARAMETER": 0, 
+                        "-t": false, 
+                        "reduction": 50.0, 
+                        "threshold": {
+                            "values": {
+                                "name": "maximumdistancemetersbetweentheoriginalandthesimplifiedpolygonboundary"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "input": {
+                            "values": {
+                                "alg": "QGISEXTRACTBYATTRIBUTE_2", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "GRASS_REGION_PARAMETER": null, 
+                        "method": 0
+                    }, 
+                    "active": true, 
+                    "consoleName": "grass7:v.generalize.simplify", 
+                    "description": "v.generalize.simplify - Vector based simplification generalization."
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}
