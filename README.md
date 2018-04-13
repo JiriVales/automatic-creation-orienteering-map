@@ -1,7 +1,7 @@
 # orienteering-tools
 Automatic creation of orienteering map
 
-Tools to create layers of orienteering map (contours, cliffs, boulders, vegetation, roads, ways, water areas).
+Tools to create layers of orienteering map (contours, cliffs, boulders, vegetation, roads, ways, water areas,..).
 Description of tools in Wiki.
 
 Folder models: created models of graphical modeller (QGIS 2.18)
